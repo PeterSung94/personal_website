@@ -960,6 +960,7 @@
                         type="submit"
                         class="btn btn-outline-pill btn-custom-light mr-3"
                         value="Send Message"
+                        onclick="sendEmail()"
                       />
                       <span class="submitting"></span>
                     </div>
@@ -986,8 +987,7 @@
                   <div class="gsap-reveal d-block">
                     <span class="d-block contact-info-label">Address</span>
                     <address class="contact-info-val">
-                    Jianchang Rd., Sanmin Dist., Kaohsiung City 807,
-                    Taiwan
+                      Jianchang Rd., Sanmin Dist., Kaohsiung City 807, Taiwan
                     </address>
                   </div>
                 </div>
@@ -1032,6 +1032,23 @@
     <div class="site-loader-wrap">
       <div class="site-loader"></div>
     </div>
+
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+      function sendEmail() {
+        var email = $("#email").val();
+        var body = $("#message").html();
+        var name = $("#name").val();
+
+        Email.send({
+          SecureToken: "9b32a557-7538-401a-aabc-c77ccc25328f",
+          To: "yutingsung.p@gmail.com",
+          From: email,
+          Subject: name,
+          Body: body,
+        }).then((message) => alert(message));
+      }
+    </script>
 
     <script src="js/scripts-dist.js"></script>
     <script src="js/main.js"></script>
